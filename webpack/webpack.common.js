@@ -12,13 +12,14 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, '../src'),
+      actions: path.resolve(__dirname, '../src/redux/actions'),
     },
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: 'bundle.css' }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../src/assets/templates/index.html'),
-      title: 'Celeryday',
+      title: 'Smells',
       mobile: true,
       baseHref: '/',
       favicon: 'src/assets/images/logo.png',
@@ -61,7 +62,7 @@ module.exports = {
           limit: 10000,
           name: 'fonts/[name].[hash:7].[ext]',
         },
-      },      
+      },
     ],
   },
 }

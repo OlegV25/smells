@@ -1,10 +1,17 @@
-import { ACCOUNTS } from '@/redux/actions/accounts'
+import { ACCOUNTS } from '@/redux/actions/accounts';
 
-export default (state = null, { type, payload }) => {
-  switch (type) {
-    case ACCOUNTS.READ.SUCCESS:
-      return payload.response
-    default:
-      return state
-  }
+const initState = {
+  currentUser: 'Oleg',
 }
+
+export default (state = initState, { type, payload }) => {
+  switch (type) {
+    case ACCOUNTS.CREATE:
+      return {
+        ...state,
+        currentUser: payload,
+      }
+    default:
+      return state;
+  }
+};

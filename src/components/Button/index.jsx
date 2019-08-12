@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './styles.scss'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './styles.scss';
 
 export default function Button(props) {
   const {
@@ -20,7 +20,7 @@ export default function Button(props) {
     >
       { children }
     </button>
-  )
+  );
 }
 
 Button.propTypes = {

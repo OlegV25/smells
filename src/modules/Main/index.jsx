@@ -1,64 +1,25 @@
 import React, { Component } from 'react';
-import {
-  EmailSvg,
-  PhoneSvg,
-} from '@/assets/icons';
-import logoImg from '@/assets/images/logo.png';
-import { Button } from '@/components';
-import {
-  validationEmail,
-  validationPhone,
-} from '@/utils/validation';
+
 import styles from './styles.scss';
+import { PollutionSvg } from '@/assets/icons';
+import InfoPanel from './InfoPanel';
+import Map from '@/modules/Map';
 
 export default class Main extends Component {
-  state = {
-    email: '',
-    phone: '',
-  }
-
-  handleChange = ({ target: { id, value } }) => {
-    this.setState({ [id]: value });
-  }
 
   render() {
-    const { email, phone } = this.state;
-
     return (
       <div className={styles.page}>
-        <img className={styles.mainLogo} src={logoImg} alt="logo"/>
-        <h1 className={styles.mainTitle}>Test</h1>
-        <form className={styles.mainForm}>
-          <div className={styles.field}>
-            <label htmlFor="email">
-              <EmailSvg className={styles.icon} />
-              Email
-            </label>
-            <input
-              id="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-            <span>
-              { validationEmail(email) ? 'Valid' : 'Not valid' }
-            </span>
+        <div className={styles.header}>
+          <PollutionSvg className={styles.logo} />
+          <div className={styles.logoText}>SMORID.LUTSK</div>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.infoPanel}>
+            <InfoPanel />
           </div>
-          <div className={styles.field}>
-            <label htmlFor="phone">
-              <PhoneSvg className={styles.icon} />
-              phone
-            </label>
-            <input
-              id="phone"
-              value={phone}
-              onChange={this.handleChange}
-            />
-            <span>
-              { validationPhone(phone) ? 'Valid' : 'Not valid' }
-            </span>
-          </div>
-          <Button className={styles.submitBtn}>Submit</Button>
-        </form>
+          <Map />
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Main from '@/modules/Main'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Main from '@/modules/Main';
 
 const Routes = () => (
   <Switch>
@@ -8,4 +8,4 @@ const Routes = () => (
   </Switch>
 )
 
-export default Routes
+export default Routes;

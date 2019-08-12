@@ -1,37 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './styles.scss';
+import React, { Component } from 'react';
+import moment from 'moment';
 
-export default function Button(props) {
-  const {
-    type,
-    className,
-    children,
-    onClick,
-    ...otherProps
-  } = props
+import styles from './styles.scss';
 
-  return (
-    <button
-      type={type}
-      className={['button', className].join(' ').trimEnd()}
-      onClick={onClick}
-      { ...otherProps }
-    >
-      { children }
-    </button>
-  );
-}
+export default class Clock extends Component {
 
-Button.propTypes = {
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
-}
+  state = {
+    time: moment().format('HH:MM'),
+    date: moment().format('DD.MM.YYYY'),
+  }
 
-Button.defaultProps = {
-  type: 'submit',
-  className: null,
-  onClick: null,
+  componentDidMount() {
+
+  }
+
+  render() {
+    const { time, date } = this.state;
+    return (
+      <div className={styles.clock}>
+        <div className={styles.date}>{date}</div>
+        <div className={styles.time}>{time}</div>
+      </div>
+    );
+  }
 }

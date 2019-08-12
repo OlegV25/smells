@@ -1,46 +1,48 @@
-.page {
+.info {
   display: flex;
+  justify-content: flex-end;
   height: 100%;
-  flex-direction: column;
 
-  .header {
-    width: 100%;
-    height: 80px;
+  .info__panel {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: #fff;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.05);
+    width: 300px;
+    height: 100%;
+    padding-top: 40px;
+    justify-content: flex-start;
 
-    .logo {
-      width: 38px;
-      height: 44px;
-      margin-right: 30px;
+    .line {
+      height: 1px;
+      width: 100%;
+      border: 1px solid #eee;
+      margin: 20px 0 30px 0;
     }
 
-    .logo__text {
-      font-family: font(logo);
-      height: 24px;
-      width: 154px;
-      color: #4e4e56;
-      font-size: 20px;
-      font-weight: bold;
-      letter-spacing: 0.26px;
-      line-height: 24px;
+    .action__btn {
+      height: 35px;
+      width: 206px;
+      border-radius: 3px;
+      background-color: #8cbc09;
+      color: #fff;
+      font-weight: 500;
+      line-height: 35px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .link {
+      width: 164px;
+      margin-top: 25px;
     }
   }
 
-  .content {
-    width: 100%;
-    display: flex;
+  .contact__us {
     height: 100%;
-
-    .info__panel {
-      width: 33%;
-    }
-
-    .map {
-      width: 67%;
-    }
+    color: #a2a2a2;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 30px;
+    cursor: pointer;
   }
 }
