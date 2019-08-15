@@ -3,10 +3,9 @@
   border: 1px solid #eee;
   border-width: 0 0 0 1px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   padding: 5px 0 5px 15px;
+
+  @include flex(space-evenly, null, column);
 
   .invisible__border {
     position: absolute;
@@ -46,8 +45,8 @@
     color: #4e4e56;
     font-size: 14px;
     font-weight: bold;
-    display: flex;
-    justify-content: flex-start;
+
+    @include flex();
   }
 
   .level {
@@ -56,15 +55,14 @@
     line-height: 20px;
 
     .point {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       width: 20px;
       height: 20px;
       border-radius: 100%;
       color: white;
       font-weight: bold;
       margin-left: 3px;
+
+      @include flex(center, center);
     }
 
     .red {
