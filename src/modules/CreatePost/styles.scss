@@ -1,3 +1,13 @@
+:global {
+  .suggestions-wrapper {
+    .suggestions {
+      li {
+        background: red;
+      }
+    }
+  }
+}
+
 .map {
   display: none;
 }

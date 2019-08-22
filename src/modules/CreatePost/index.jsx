@@ -16,6 +16,7 @@ class Main extends Component {
 
   state = {
     currentRadio: 0,
+    isSubmitDisabled: true,
   }
 
   onRadioChange = key => this.setState({ currentRadio: key });
@@ -44,7 +45,10 @@ class Main extends Component {
 
   goToMain = () => this.props.history.goBack();
 
+  onSubmit = () => console.log('dd')
+
   render() {
+    const { isSubmitDisabled } = this.state;
     return (
       <ModalWrapper onClose={this.goToMain}>
         <div className={styles.title}>Кажи де тобі засмерділо сьогодні</div>
@@ -65,7 +69,11 @@ class Main extends Component {
           <div className={classnames(styles.btn, styles.cancel)} onClick={this.goToMain}>
             Вже не смердить
           </div>
-          <div className={classnames(styles.btn, styles.submit)}>Відправити</div>
+          <button onClick={this.onSubmit}
+                  disabled={isSubmitDisabled}
+                  className={classnames(styles.btn, styles.submit)}>
+            Відправити
+          </button>
         </div>
       </ModalWrapper>
     );
