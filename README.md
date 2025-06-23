@@ -5,12 +5,31 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#about-the-project">Built With</a></li>
+    <li><a href="#about-the-project">Installation</a></li>
+    <li><a href="#about-the-project">Usage</a></li>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Old solution (Tree-Like Structure)</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#prerequisites">Advantages</a></li>
+        <li><a href="#installation">Disadvantages</a></li>
+        <li><a href="#installation">Visual representation of architecture</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#about-the-project">New solution (Flat Structure)</a>
+      <ul>
+        <li><a href="#prerequisites">Advantages</a></li>
+        <li><a href="#installation">Disadvantages</a></li>
+        <li><a href="#installation">Visual representation of architecture</a></li>
+      </ul>
+    </li>
+    <li><a href="#about-the-project">Usage</a></li>
+    <li><a href="#about-the-project">Usage</a></li>
+    <li><a href="#about-the-project">Usage</a></li>
+    <li><a href="#about-the-project">Usage</a></li>
+    <li><a href="#about-the-project">Usage</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -27,29 +46,21 @@
   </ol>
 </details>
 
-
-
-## About The Project
+## About the project
 
 This project is needed to create a component that will receive profile data as input, as well as elements of various design systems. The output will be a profile editing component. 
 This project will also serve as a storage place for other components of the "Profile Editor" project, so that in the future it will be possible to share these components between other teams.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 ### Built With
 
-* [![React][React.img]][React.url]
-* [![Formik][Formik.img]][Formik.url]
-* [![TypeScript][TypeScript.img]][TypeScript.url]
-* [![Lodash][Lodash.img]][Lodash.url]
-* [![Styled-components][Styled-components.img]][Styled-components.url]
-* [![I18next][I18next.img]][I18next.url]
-* [![Nanoid][Nanoid.img]][Nanoid.url]
-* [![Redux][Redux.img]][Redux.url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+  * [![React][React.img]][React.url] – Library for building user interfaces.
+  * [![Formik][Formik.img]][Formik.url] – Form state management in React.
+  * [![TypeScript][TypeScript.img]][TypeScript.url] – Typed superset of JavaScript.
+  * [![Lodash][Lodash.img]][Lodash.url] – Utility library for data manipulation.
+  * [![Styled-components][Styled-components.img]][Styled-components.url] – CSS-in-JS styling for components.
+  * [![I18next][I18next.img]][I18next.url] – Internationalization framework.
+  * [![Nanoid][Nanoid.img]][Nanoid.url] – Tiny unique ID generator.
+  * [![Redux][Redux.img]][Redux.url] – State management for JS apps.
 
 ### Installation
 
@@ -62,9 +73,7 @@ This project will also serve as a storage place for other components of the "Pro
    npm install
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Usage
+### Usage
 
 * npm
   ```sh
@@ -75,10 +84,7 @@ This project will also serve as a storage place for other components of the "Pro
   more code will be presented later
   ```
   
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Old solution (Tree-Like Structure)
+### Old data approach (Tree-Like Structure)
 
 The previous approach was developed on the direct use of data coming from the BE. This approach is not perfect, because in it the drawing of all components is done in a tree-like way, or recursive rendering.
 
@@ -123,13 +129,11 @@ flowchart TD
     F9 --> F10[Render Rows]
     F10 --> D1
 
-    
     D1 -->|Group| G[Render label and entity]
     G --> B2
 ```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### New solution (Flat Structure)
+### New data approach (Flat Structure)
 
 The new approach is to transform the input information into a form convenient for the frontend - in our case it is a flat list. Also, one of the principles of this approach is the transformation of input data.
 
@@ -144,6 +148,7 @@ The new approach is to transform the input information into a form convenient fo
   * Additional parsing/preprocessing occurs.
 
 ## Visual representation of architecture
+
 ```mermaid
 flowchart TD
     A[Data acquisition] --> B[Visibility service]
@@ -169,8 +174,110 @@ flowchart TD
     E --> F9[Complex Table]
     F9 --> G9[Fluent Complex Table]
     F9 --> F10[Render Rows]
-
 ```
+
+### Current dependency inspector logic
+This mechanism is used to track changes within the project itself. Its main feature is to remember user changes and send signals to elements that need to change their state or be redrawn as a whole.
+This mechanism compares current changes and a dependency table that must be generated before the application starts working
+
+```mermaid
+flowchart TD
+    A[Data acquisition] --> B[Dependencies inspector preparation]
+    B --> C{Initial render/ Required renderer }
+    C --> F1[Number Input] --> F
+    C --> F2[Text Input] --> F
+    C --> F3[Text Area] --> F
+    C --> F4[Select Box] --> F
+    C --> F5[Radio] --> F
+    C --> F6[Checkbox] --> F
+    C --> F7[Attachment] --> F
+    C --> F8[Radio Item] --> F
+    C --> F9[Complex Table] --> F
+    F[Dependencies inspector] --> C
+```
+
+### Shared component solution (Editor Part)
+The main idea of ​​this solution is to send additional information about all elements of the design system used by a particular team.
+All interactive elements will be replaced by wrappers that will take information about visual elements from the top layer.
+
+## Pros
+  * All validation logic, error handling, etc. are in one place.
+  * Simplifies support and testing.
+  * Any design system can be used (Fluent UI, Material UI, Chakra, etc.).
+  * Suitable for large teams or libraries where the design may change.
+  * Design components are not aware of validation, which reduces coherence.
+  * You can update the design or logic independently.
+  * The user can pass any of their custom components (for example, input with autocomplete).
+
+## Cons
+  * If the component accepts any UI component, you need to correctly describe props.children or as-props.
+  * In TypeScript, this may require complex generic types.
+  * Fluent UI, MUI, Chakra may have different approaches to onChange, value, error, helperText, ref, etc.
+  * Need to write "adapters" or map props for unification.
+
+## Visual representation of architecture
+
+```mermaid
+flowchart TD
+    A[Layout]
+    B[Parameter]
+    C1[Input]
+    C2[Dropdown]
+    C3[Radio]
+    C4[Rest of elements...]
+    D[App]
+    E[Rendering]
+    F1[Input Warpper]
+    F2[Dropdown Warpper]
+    F3[Radio Warpper]
+    F4[Rest of elements... Warpper]
+    G1[Input element from props]
+    G2[Dropdown element from props]
+    G3[Radio element from props]
+    G4[Rest of elements... from props]
+
+    A --> D
+    B --> D
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    D --> E
+    E --> F1
+    E --> F2
+    E --> F3
+    E --> F4
+    F1 --> G1
+    F2 --> G2
+    F3 --> G3
+    F4 --> G4
+```
+### Additional info
+  * Work organization strategy
+  * PR rules
+  * Cnahgelog rules:
+    * Sections for change types: Added, Changed, Removed, Fixed
+    * Semantic versioning: major (breaks API), minor (new feature, compatible), patch (bug fixes)
+    * Recent changes from above
+    * Keeping track of all changes in CHANGELOG.md
+    * Examples:
+```
+[1.2.0] - 2025-06-23
+### Added
+- Export to CSV functionality.
+- Support for Ukrainian language.
+
+### Changed
+- Redesigned settings page layout.
+
+### Fixed
+- Crash when saving without internet connection.
+
+## [1.1.1] - 2025-06-10
+### Fixed
+- Incorrect validation on email field.
+```
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [React.img]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
