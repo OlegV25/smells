@@ -2,56 +2,12 @@
   <h3 align="center">bpp-react-components</h3>
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#about-the-project">Built With</a></li>
-    <li><a href="#about-the-project">Installation</a></li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li>
-      <a href="#about-the-project">Old solution (Tree-Like Structure)</a>
-      <ul>
-        <li><a href="#prerequisites">Advantages</a></li>
-        <li><a href="#installation">Disadvantages</a></li>
-        <li><a href="#installation">Visual representation of architecture</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#about-the-project">New solution (Flat Structure)</a>
-      <ul>
-        <li><a href="#prerequisites">Advantages</a></li>
-        <li><a href="#installation">Disadvantages</a></li>
-        <li><a href="#installation">Visual representation of architecture</a></li>
-      </ul>
-    </li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li><a href="#about-the-project">Usage</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
 ## About the project
 
 This project is needed to create a component that will receive profile data as input, as well as elements of various design systems. The output will be a profile editing component. 
 This project will also serve as a storage place for other components of the "Profile Editor" project, so that in the future it will be possible to share these components between other teams.
 
-### Built With
+## Built With
 
   * [![React][React.img]][React.url] – Library for building user interfaces.
   * [![Formik][Formik.img]][Formik.url] – Form state management in React.
@@ -62,7 +18,7 @@ This project will also serve as a storage place for other components of the "Pro
   * [![Nanoid][Nanoid.img]][Nanoid.url] – Tiny unique ID generator.
   * [![Redux][Redux.img]][Redux.url] – State management for JS apps.
 
-### Installation
+## Installation
 
 1. Clone the repo
    ```sh
@@ -73,7 +29,7 @@ This project will also serve as a storage place for other components of the "Pro
    npm install
    ```
 
-### Usage
+## Usage
 
 * npm
   ```sh
@@ -84,20 +40,20 @@ This project will also serve as a storage place for other components of the "Pro
   more code will be presented later
   ```
   
-### Old data approach (Tree-Like Structure)
+## Old data approach (Tree-Like Structure)
 
 The previous approach was developed on the direct use of data coming from the BE. This approach is not perfect, because in it the drawing of all components is done in a tree-like way, or recursive rendering.
 
-## Advantages:
+### Advantages:
   * Naturally reflects structure: good for tree-like or hierarchical data.
   * Easier to maintain nesting logic: each level is responsible for itself.
 
-## Disadvantages:
+### Disadvantages:
   * Harder to control the rendering order at different levels.
   * Can be slower with very large structures: especially with deep nesting.
   * Difficult to cache and optimize: especially if many useEffect/useMemo are used.
 
-## Visual representation of architecture
+### Visual representation of architecture
 
 ```mermaid
 flowchart TD
@@ -133,21 +89,21 @@ flowchart TD
     G --> B2
 ```
 
-### New data approach (Flat Structure)
+## New data approach (Flat Structure)
 
 The new approach is to transform the input information into a form convenient for the frontend - in our case it is a flat list. Also, one of the principles of this approach is the transformation of input data.
 
-## Advantages:
+### Advantages:
 
   * Better control over rendering: especially for virtualization.
   * Easier to optimize: easy to remember parts of a tree or lists.
   * Suitable for visualizing large objects
 
-## Disadvantages:
+### Disadvantages:
   * Complication of logic when rendering hierarchy: need to restore nesting manually or via parentId relationship.
   * Additional parsing/preprocessing occurs.
 
-## Visual representation of architecture
+### Visual representation of architecture
 
 ```mermaid
 flowchart TD
@@ -176,7 +132,7 @@ flowchart TD
     F9 --> F10[Render Rows]
 ```
 
-### Current dependency inspector logic
+## Current dependency inspector logic
 This mechanism is used to track changes within the project itself. Its main feature is to remember user changes and send signals to elements that need to change their state or be redrawn as a whole.
 This mechanism compares current changes and a dependency table that must be generated before the application starts working
 
@@ -196,11 +152,11 @@ flowchart TD
     F[Dependencies inspector] --> C
 ```
 
-### Shared component solution (Editor Part)
+## Shared component solution (Editor Part)
 The main idea of ​​this solution is to send additional information about all elements of the design system used by a particular team.
 All interactive elements will be replaced by wrappers that will take information about visual elements from the top layer.
 
-## Pros
+### Pros
   * All validation logic, error handling, etc. are in one place.
   * Simplifies support and testing.
   * Any design system can be used (Fluent UI, Material UI, Chakra, etc.).
@@ -209,13 +165,13 @@ All interactive elements will be replaced by wrappers that will take information
   * You can update the design or logic independently.
   * The user can pass any of their custom components (for example, input with autocomplete).
 
-## Cons
+### Cons
   * If the component accepts any UI component, you need to correctly describe props.children or as-props.
   * In TypeScript, this may require complex generic types.
   * Fluent UI, MUI, Chakra may have different approaches to onChange, value, error, helperText, ref, etc.
   * Need to write "adapters" or map props for unification.
 
-## Visual representation of architecture
+### Visual representation of architecture
 
 ```mermaid
 flowchart TD
@@ -252,9 +208,8 @@ flowchart TD
     F3 --> G3
     F4 --> G4
 ```
-### Additional info
-  * Work organization strategy
-  * PR rules
+## Additional info
+  * Work organization strategy - GitFlow
   * Cnahgelog rules:
     * Sections for change types: Added, Changed, Removed, Fixed
     * Semantic versioning: major (breaks API), minor (new feature, compatible), patch (bug fixes)
